@@ -1,3 +1,4 @@
+import { getRandomNumber } from "./getRandomNumber";
 import { lowers } from "./lowers";
 import { numerals } from "./numerals";
 import { uppers } from "./uppers";
@@ -20,13 +21,10 @@ export const generatePassword = (
     chars += numerals;
   }
 
-  const a = new Uint32Array(passwordLength);
-  self.crypto.getRandomValues(a);
-
   let password = "";
-  a.forEach((n) => {
-    password += chars[n % chars.length];
-  });
+  for (let i = 0; i < passwordLength; i++) {
+    password += chars[getRandomNumber(chars.length - 1)];
+  }
 
   return password;
 };
