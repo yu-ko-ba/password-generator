@@ -8,6 +8,8 @@ export default function Home() {
   const [upperIsSelected, setUpperIsSelected] = useState(true);
   const [lowerIsSelected, setLowerIsSelected] = useState(true);
   const [numeralIsSelected, setNumeralIsSelected] = useState(true);
+  const [hiraganaIsSelected, setHiraganaIsSelected] = useState(false);
+  const [katakanaIsSelected, setkatakanaIsSelected] = useState(false);
   const [additionalChars, setAdditionalChars] = useState("");
   const [passwordLength, setPasswordLength] = useState(16);
   const [password, setPassword] = useState("");
@@ -17,6 +19,8 @@ export default function Home() {
         upperIsSelected,
         lowerIsSelected,
         numeralIsSelected,
+        hiraganaIsSelected,
+        katakanaIsSelected,
         additionalChars,
         passwordLength,
       ),
@@ -36,6 +40,8 @@ export default function Home() {
                 selected,
                 lowerIsSelected,
                 numeralIsSelected,
+                hiraganaIsSelected,
+                katakanaIsSelected,
                 additionalChars,
                 passwordLength,
               ),
@@ -49,6 +55,8 @@ export default function Home() {
                 upperIsSelected,
                 selected,
                 numeralIsSelected,
+                hiraganaIsSelected,
+                katakanaIsSelected,
                 additionalChars,
                 passwordLength,
               ),
@@ -61,6 +69,38 @@ export default function Home() {
               generatePassword(
                 upperIsSelected,
                 lowerIsSelected,
+                selected,
+                hiraganaIsSelected,
+                katakanaIsSelected,
+                additionalChars,
+                passwordLength,
+              ),
+            );
+          }}
+          hiraganaIsSelected={hiraganaIsSelected}
+          onChangeHiragana={(selected) => {
+            setHiraganaIsSelected(selected);
+            setPassword(
+              generatePassword(
+                upperIsSelected,
+                lowerIsSelected,
+                numeralIsSelected,
+                selected,
+                katakanaIsSelected,
+                additionalChars,
+                passwordLength,
+              ),
+            );
+          }}
+          katakanaIsSelected={katakanaIsSelected}
+          onChangeKatakana={(selected) => {
+            setkatakanaIsSelected(selected);
+            setPassword(
+              generatePassword(
+                upperIsSelected,
+                lowerIsSelected,
+                numeralIsSelected,
+                hiraganaIsSelected,
                 selected,
                 additionalChars,
                 passwordLength,
@@ -79,6 +119,8 @@ export default function Home() {
                 upperIsSelected,
                 lowerIsSelected,
                 numeralIsSelected,
+                hiraganaIsSelected,
+                katakanaIsSelected,
                 chars,
                 passwordLength,
               ),
@@ -100,6 +142,8 @@ export default function Home() {
                 upperIsSelected,
                 lowerIsSelected,
                 numeralIsSelected,
+                hiraganaIsSelected,
+                katakanaIsSelected,
                 additionalChars,
                 n,
               ),
@@ -122,12 +166,15 @@ export default function Home() {
                 upperIsSelected,
                 lowerIsSelected,
                 numeralIsSelected,
+                hiraganaIsSelected,
+                katakanaIsSelected,
                 additionalChars,
                 passwordLength,
               ),
             );
           }}
           disabled={!(upperIsSelected || lowerIsSelected || numeralIsSelected ||
+            hiraganaIsSelected || katakanaIsSelected ||
             additionalChars.length !== 0)}
         >
           再生成
@@ -136,6 +183,7 @@ export default function Home() {
           sx={{ overflowWrap: "break-word" }}
         >
           {(upperIsSelected || lowerIsSelected || numeralIsSelected ||
+              hiraganaIsSelected || katakanaIsSelected ||
               additionalChars.length !== 0)
             ? password
             : ""}

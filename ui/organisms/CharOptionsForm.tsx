@@ -1,3 +1,5 @@
+import { hiragana } from "@/utils/hiragana";
+import { katakana } from "@/utils/katakana";
 import { lowers } from "@/utils/lowers";
 import { numerals } from "@/utils/numerals";
 import { uppers } from "@/utils/uppers";
@@ -10,6 +12,10 @@ type Props = {
   onChangeLower: (selected: boolean) => void;
   numeralIsSelected: boolean;
   onChangeNumeral: (selected: boolean) => void;
+  hiraganaIsSelected: boolean;
+  onChangeHiragana: (selected: boolean) => void;
+  katakanaIsSelected: boolean;
+  onChangeKatakana: (selected: boolean) => void;
 };
 
 export default function CharOptionsForm(
@@ -20,6 +26,10 @@ export default function CharOptionsForm(
     onChangeLower,
     numeralIsSelected,
     onChangeNumeral,
+    hiraganaIsSelected,
+    onChangeHiragana,
+    katakanaIsSelected,
+    onChangeKatakana,
   }: Props,
 ) {
   return (
@@ -53,6 +63,28 @@ export default function CharOptionsForm(
             checked={numeralIsSelected}
             onChange={(e) => {
               onChangeNumeral(e.target.checked);
+            }}
+          />
+        }
+      />
+      <FormControlLabel
+        label={hiragana}
+        control={
+          <Checkbox
+            checked={hiraganaIsSelected}
+            onChange={(e) => {
+              onChangeHiragana(e.target.checked);
+            }}
+          />
+        }
+      />
+      <FormControlLabel
+        label={katakana}
+        control={
+          <Checkbox
+            checked={katakanaIsSelected}
+            onChange={(e) => {
+              onChangeKatakana(e.target.checked);
             }}
           />
         }
